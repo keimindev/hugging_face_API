@@ -1,14 +1,13 @@
 import InputText from "./components/inputField";
-import Section from "./components/section";
 
 function App() {
   return (
-    <div>
+    <div className="relative">
       <main>
       <InputText/>
       {/* <Section /> */}
       </main>
-      <footer>Keira M Jeong for FIYGE Research.</footer>
+      <footer className="fixed bottom-5 right-0 left-0 text-center">Keira M Jeong for FIYGE Research.</footer>
     </div>
   );
 }
