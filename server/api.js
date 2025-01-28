@@ -34,8 +34,8 @@ app.post("/analyze", async (req, res) => {
     // result
     console.log(result, 'result')
     res.json({
-      sentiment:result.sentiment,
-      confidence: result.confidence
+      sentiment: result[0].label,
+      confidence: result[0].score,
     });
   } catch (error) {
     console.error("Error analyzing sentiment:", error);

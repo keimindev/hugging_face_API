@@ -6,7 +6,7 @@ function App() {
     <div>
       <main>
       <InputText/>
-      <Section />
+      {/* <Section /> */}
       </main>
       <footer>Keira M Jeong for FIYGE Research.</footer>
     </div>
