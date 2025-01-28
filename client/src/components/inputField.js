@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import axios from "axios";
+import ResultSection from "./resultSection";
+import { url } from "../utill/api";
+
+
 
 function InputText() {
   const [inputValue, setInputValue] = useState("");
@@ -10,8 +14,6 @@ function InputText() {
   const handleOnChange = (e) => {
     setInputValue(e.target.value);
   };
-
-  const url = "http://localhost:8081/analyze";
 
   const handleOnClick = async () => {
     setIsLoading(true);
@@ -46,44 +48,16 @@ function InputText() {
         <button
           disabled={!inputValue}
           onClick={handleOnClick}
-          class="rounded-lg md:w-[100px] h-[40px] bg-blue-500 text-white disabled:bg-gray-500 disabled:cursor-not-allowed mt-1.5 m-2"
+          className="rounded-lg md:w-[100px] h-[40px] bg-blue-500 text-white disabled:bg-gray-500 disabled:cursor-not-allowed mt-1.5 m-2"
         >
           Submit
         </button>
       </div>
-      <div className="mt-10">
-        {!isLoading ? (
-          sentiment && confidence ? (
-            <div className="flex flex-col justify-center p-5">
-              <h3 className="text-2xl font-bold underline mb-3 text-center">Result</h3>
-              <div className="flex justify-center">
-              <table class="border-collapse border border-gray-400 md:w-[500px] w-[100%]">
-                <thead>
-                  <tr>
-                    <th class="border border-gray-300">Sentiment</th>
-                    <th class="border border-gray-300">Confidence</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="border border-gray-300 text-center">
-                      {sentiment}
-                    </td>
-                    <td class="border border-gray-300 text-center">
-                      {confidence}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              </div>
-            </div>
-          ) : (
-            <div className="text-center text-gray-500">There is any data.</div>
-          )
-        ) : (
-          <div className="text-center text-blue-500">Loading...</div>
-        )}
-      </div>
+      <ResultSection
+        isLoading={isLoading}
+        sentiment={sentiment}
+        confidence={confidence}
+      />
     </div>
   );
 }
